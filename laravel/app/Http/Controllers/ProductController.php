@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function products(){
-        dd(\App\Models\Product::all());
+    public function list()
+    {
+
+        $products = \App\Models\Product::all();
+
+        return view('products', ['products' => $products]);
     }
-    public function product(){
+
+    public function detail($id)
+    {
         dd($id);
     }
 }
