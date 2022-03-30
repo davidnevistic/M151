@@ -8,6 +8,8 @@
 
 
     <button>In den Warenkorb</button>
+    <br><br>
+    <a href="/products">Zurück zur Liste</a>
 </body>
 
 </html>

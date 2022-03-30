@@ -14,7 +14,9 @@
     <a href="/product/<?php echo e($product->id); ?>">Details</a>
 
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+    <div>
+        <button><a href="/login">Login</a></button>
+    </div>
 </body>
 
 </html><?php /**PATH /home/vmadmin/M151/laravel/resources/views/products.blade.php ENDPATH**/ ?>

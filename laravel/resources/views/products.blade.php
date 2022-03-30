@@ -12,7 +12,9 @@
     <a href="/product/{{$product->id }}">Details</a>
 
     @endforeach
-
+    <div>
+        <button><a href="/login">Login</a></button>
+    </div>
 </body>
 
 </html>
