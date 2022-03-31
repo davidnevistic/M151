@@ -45,15 +45,18 @@ class UserController extends Controller
         $user = User::where('email', $email)->first();
 
         if ($user) {
+
             if (password_verify($password, $user->password)) {
                 session()->put('userId', $user->id);
                 return redirect ('/products');
             }
+
             else {
                 // Error, password wrong
                 return redirect('/login');
             }
         }
+        
         else {
             // Error, user not found
             return redirect ('/register');
