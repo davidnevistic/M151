@@ -22,6 +22,11 @@ class UserController extends Controller
         $email = request()->get('email');
         $password = request()->get('password');
 
+        if(User::where('email', $email)->first())
+        {
+            return redirect('login');
+        }
+
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         User::create([

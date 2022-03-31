@@ -10,7 +10,7 @@
     <br><br>
     <button type="submit">Register</button>
   </div>
-  <br><br>
+  <br>
   <div class="container signin">
     <a href="login">Einloggen</a>
   </div>
