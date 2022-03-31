@@ -13,7 +13,11 @@
 
     @endforeach
     <div>
+        @if(!session()->has('userId'))
         <button><a href="/login">Login</a></button>
+        @else
+        <button><a href="/logout">Logout</a></button>
+        @endif     
     </div>
 </body>
 

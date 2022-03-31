@@ -18,48 +18,45 @@ class UserController extends Controller
         return view("/register");
     }
 
-    public function register(Request $request)
-    {
-        $data = $request->all();
+    public function register() {
+        $email = request()->get('email');
+        $password = request()->get('password');
 
-        // PASSWORT Verschlüsseln
-        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
-        if (User::where('email', '=', $data['email'])->first() === null) {
-            // INSERT USER
-            $user = User::create([
-                'surname' => $data['surname'],
-                'name' => $data['firstname'],
-                'email' => $data['email'],
-                'password' => $password,
-                'salt' => '1234567890',
-                'adress' => $data['street'],
-                'house_number' => $data['house_number'],
-            ]);
+        User::create([
+            'email' => $email,
+            'password' => $password
+        ]);
 
-            session()->put('userId', $user->id);
-            return redirect('/products');
-        } else {
-            return redirect('/login');
+        return view("/login");
+
+    }
+
+    public function login() {
+        $email = request()->get('email');
+        $password = request()->get('password');
+
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                session()->put('userId', $user->id);
+                return redirect ('/products');
+            }
+            else {
+                // Error, password wrong
+                return redirect('/login');
+            }
+        }
+        else {
+            // Error, user not found
+            return redirect ('/register');
         }
     }
 
-    public function login(Request $request)
-    {
-        $data = $request->all();
-
-        // Check for user
-        $user = User::where('email', $data['email'])->first();
-
-        if ($user) {
-            if (password_verify($data['password'], $user->password)) {
-                session()->put('userId', $user->id);
-                return redirect('/products');
-            } else {
-                return redirect('/login');
-            }
-        } else {
-            return redirect('/register');
-        }
+    public function logout() {
+        session()->forget('userId');
+        return redirect('/products');
     }
 }

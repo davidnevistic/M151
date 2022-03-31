@@ -2,7 +2,7 @@
 
 <body>
     <h1>{{$product->name}}</h1>
-    <img src="{{$product->image}}">
+    <img src="{{asset($product->image)}}">
     <p>{{$product->description}}</p>
 
 

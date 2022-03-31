@@ -1,6 +1,7 @@
-<form action="/UserController.php" method="POST">
+<form action="/login" method="POST">
     @csrf
     <div class="container">
+        <h3>Login</h3>
         <label for="email"><b>Email</b></label>
         <input type="text" placeholder="Enter Email" name="email" id="email" required>
         <br><br>

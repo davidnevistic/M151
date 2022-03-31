@@ -15,7 +15,11 @@
 
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <div>
+        <?php if(!session()->has('userId')): ?>
         <button><a href="/login">Login</a></button>
+        <?php else: ?>
+        <button><a href="/logout">Logout</a></button>
+        <?php endif; ?>     
     </div>
 </body>
 
